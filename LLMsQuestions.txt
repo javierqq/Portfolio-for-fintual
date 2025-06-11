@@ -1,0 +1,83 @@
+this section is breaking my javascript script
+
+import finnhub from 'finnhub';
+
+const api_key = finnhub.ApiClient.instance.authentications['api_key'];
+api_key.apiKey = "d12sogpr01qv1k0n1o00d12sogpr01qv1k0n1o0g"
+const finnhubClient = new finnhub.DefaultApi()
+
+var result= finnhubClient.quote("AAPL", (error, data, response) => {
+  console.log(data)
+});
+
+ive'already run npm install finnhub, also im using vite, so adjust the import  method accordingly
+
+Solution 2: Try Named Import
+javascriptimport * as finnhub from 'finnhub';
+
+const api_key = finnhub.ApiClient.instance.authentications['api_key'];
+api_key.apiKey = "d12sogpr01qv1k0n1o00d12sogpr01qv1k0n1o0g";
+const finnhubClient = new finnhub.DefaultApi();
+
+finnhubClient.quote("AAPL", (error, data, response) => {
+  if (error) {
+    console.error('Error:', error);
+  } else {
+    console.log('Data:', data);
+  }
+});
+
+
+how do I access the different elements in the object returned by getQuote
+
+
+async function updatePrice() {
+  const quote = await getQuote("AAPL");
+  if (quote) {
+    document.querySelector('#header').innerHTML = quote.c;
+  }
+}
+
+
+im getting this error
+
+stock.currentPrice is not a function
+
+but this is the method inside the stock clas, so i assume it's being accessed incorrectly
+
+async currentPrice() {
+    try {
+      const quote = await getQuote(this.stockName);
+      if (quote) {
+        this.previousStockPrice = this.stockPrice; 
+        this.stockPrice = quote.c; 
+        return this.stockPrice;
+      } else {
+        console.error('No quote data received');
+        return null;
+      }
+    } catch (error) {
+      console.error('Failed to update price:', error);
+      return null;
+    }
+  }
+
+
+
+  proyectedBalance() {
+    let newBalance = 0;
+    const stocksObj = this.allocatedStocks;
+    
+    for (let stockName in stocksObj) {
+        const stockWrapper = stocksObj[stockName];
+        const stock = stockWrapper.stock; // Access the actual stock object
+        const allocation = stockWrapper.allocation; // Get the allocation
+        
+        const percentagePerStock = this.balance * allocation; // Fixed allocation access
+        
+        // Now stock.currentPrice() will work because stock is the actual Stock instance
+        newBalance += (percentagePerStock * await stock.currentPrice()) / stock.previousStockPrice;
+    }
+    
+    return newBalance;
+}
