@@ -1,6 +1,6 @@
 /*using finnbhub to get the current sotck prices*/
 
-const API_KEY = "d12sogpr01qv1k0n1o00d12sogpr01qv1k0n1o0g";
+const API_KEY = "<your-api-key>";
 
 async function getQuote(symbol) {
   try {
