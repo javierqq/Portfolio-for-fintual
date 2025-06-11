@@ -16,4 +16,10 @@ _disclaimer:_ I have not much experience with javascript, althought I believe lo
 
 
 
+**To run**
+Within the proyect folder run:
 
+npm install -D vite
+npx vite
+
+In the browser go to http://localhost:5173/ (default in vite)
