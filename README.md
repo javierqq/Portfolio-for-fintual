@@ -23,3 +23,5 @@ npm install -D vite
 npx vite
 
 In the browser go to http://localhost:5173/ (default in vite)
+
+For the finnhube connection, create an API key and replace API_KEY in finnhubConnection.js
